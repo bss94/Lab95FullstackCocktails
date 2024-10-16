@@ -19,7 +19,7 @@ const config = {
   rootPath,
   publicPath: path.join(rootPath, 'public'),
   corsOptions,
-  database: 'mongodb://localhost/music',
+  database: 'mongodb://localhost/cocktails',
   // google: {
   //     clientId: process.env.GOOGLE_CLIENT_ID,
   //     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
