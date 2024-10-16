@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 
 export interface UserFields {
   email: string;
@@ -21,3 +21,16 @@ export interface UserMethods {
 }
 
 export type UserModel = Model<UserFields, {}, UserMethods, UserVirtuals>;
+
+export interface Ingredient {
+  ingredientName: string;
+  amount: string;
+}
+
+export interface CocktailMutation {
+  author: mongoose.Types.ObjectId;
+  title: string;
+  image: string | null;
+  recipe: string;
+  ingredients: Ingredient[];
+}
