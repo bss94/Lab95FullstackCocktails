@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import config from './config';
 import cocktailsRouter from './routers/cocktails';
+import usersRouter from './routers/users';
 
 const app = express();
 const port = 8000;
@@ -10,6 +11,7 @@ const port = 8000;
 app.use(cors(config.corsOptions));
 app.use(express.json());
 app.use(express.static('public'));
+app.use('/users', usersRouter);
 app.use('/cocktails', cocktailsRouter);
 
 const run = async () => {
