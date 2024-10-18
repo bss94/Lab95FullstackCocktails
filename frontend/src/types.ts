@@ -68,3 +68,18 @@ export interface CocktailMutation {
   recipe: string;
   ingredients: IngredientMutation[];
 }
+export interface Author {
+  _id: string;
+  email: string;
+}
+
+export interface AdminsCocktail {
+  _id: string;
+  author: Author;
+  title: string;
+  image: string;
+  recipe: string;
+  isPublished: boolean;
+  ingredients: Ingredient[];
+  rate: Rate[];
+}

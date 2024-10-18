@@ -89,6 +89,63 @@ const run = async () => {
         },
       ],
     },
+    {
+      author: admin,
+      title: 'Tommy Margarita',
+      image: 'fixtures/tomy.jpg',
+      recipe: 'Shake and strain into a chilled cocktail glass.',
+      isPublished: true,
+      ingredients: [
+        {
+          ingredientName: 'Tequila',
+          amount: '4.5 cl',
+        },
+        {
+          ingredientName: 'Lime juice',
+          amount: '1.5 cl',
+        },
+        {
+          ingredientName: 'Agave syrup',
+          amount: '2 spoon',
+        },
+      ],
+      rate: [
+        {
+          user: admin,
+          rate: 2,
+        },
+      ],
+    },
+    {
+      author: admin,
+      title: 'Whitecap Margarita',
+      image: 'fixtures/tomy.jpg',
+      recipe: 'Place all ingredients in a blender and blend until smooth. This makes one drink.',
+      ingredients: [
+        {
+          ingredientName: 'Tequila',
+          amount: '4.5 cl',
+        },
+        {
+          ingredientName: 'Lime juice',
+          amount: '1.5 cl',
+        },
+        {
+          ingredientName: 'Coconut cream',
+          amount: '1/4 cup',
+        },
+        {
+          ingredientName: 'Ice',
+          amount: '1 cup',
+        },
+      ],
+      rate: [
+        {
+          user: admin,
+          rate: 4,
+        },
+      ],
+    },
   );
 
   await db.close();

@@ -10,6 +10,7 @@ import Cocktails from './features/Cocktails/Cocktails.tsx';
 import NewCocktail from './features/Cocktails/NewCocktail.tsx';
 import MyCocktails from './features/Cocktails/MyCocktails.tsx';
 import OneCocktail from './features/Cocktails/OneCocktail.tsx';
+import Admins from './features/Admins/Admins.tsx';
 
 const App = () => {
   const user = useAppSelector(selectUser);
@@ -40,14 +41,10 @@ const App = () => {
           path="/admins"
           element={
             <ProtectedRoute isAllowed={user && user.role === 'admin'}>
-              <div />
+              <Admins />
             </ProtectedRoute>
           }
-        >
-          <Route path="coctails" element={<div />} />
-          <Route path="users" element={<div />} />
-        </Route>
-
+        />
         <Route path="*" element={<Typography variant="h1">Not found</Typography>} />
       </Routes>
     </Layout>
