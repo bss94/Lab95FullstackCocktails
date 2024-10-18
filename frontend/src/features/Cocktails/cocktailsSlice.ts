@@ -1,6 +1,6 @@
 import { Cocktail } from '../../types.ts';
 import { createSlice } from '@reduxjs/toolkit';
-import { createCocktail, fetchCocktails, fetchOneCocktail } from './cocktailsThunks.ts';
+import { createCocktail, fetchCocktails, fetchOneCocktail, fetchUserCocktails } from './cocktailsThunks.ts';
 
 interface CocktailsState {
   cocktails: Cocktail[];
@@ -54,6 +54,17 @@ export const cocktailsSlice = createSlice({
       })
       .addCase(createCocktail.rejected, (state) => {
         state.cocktailCreating = false;
+      });
+    builder
+      .addCase(fetchUserCocktails.pending, (state) => {
+        state.cocktailsFetching = true;
+      })
+      .addCase(fetchUserCocktails.fulfilled, (state, { payload: cocktails }) => {
+        state.cocktails = cocktails;
+        state.cocktailsFetching = false;
+      })
+      .addCase(fetchUserCocktails.rejected, (state) => {
+        state.cocktailsFetching = false;
       });
   },
   selectors: {

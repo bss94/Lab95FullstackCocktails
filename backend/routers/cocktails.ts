@@ -8,8 +8,8 @@ const cocktailsRouter = express.Router();
 
 cocktailsRouter.get('/', async (req, res, next) => {
   try {
-    const userId = req.query.user;
-    const cocktails = await Cocktail.find(userId ? { author: userId } : { isPublished: true });
+    const author = req.query.author;
+    const cocktails = await Cocktail.find(author ? { author: author } : { isPublished: true });
     return res.send(cocktails);
   } catch (err) {
     next(err);
@@ -49,8 +49,26 @@ cocktailsRouter.post('/', auth, imagesUpload.single('image'), async (req: Reques
   }
 });
 
-cocktailsRouter.patch('/:id/toggleRate', async (req, res, next) => {
+cocktailsRouter.patch('/:id/toggleRate', auth, async (req: RequestWithUser, res, next) => {
   try {
+    if (req.user) {
+      const id = req.params.id;
+      const rate = req.body.rate as number;
+      const cocktail = await Cocktail.findById(id);
+      if (cocktail) {
+        const currentRate = cocktail.rate.id(req.body.rateId);
+        if (!currentRate) {
+          cocktail.rate.push({ rate: rate, user: req.user._id });
+          await cocktail.save();
+        } else {
+          currentRate.rate = req.body.rate;
+          await cocktail.save();
+        }
+        return res.send({ message: 'Rate changed successfully.' });
+      }
+    } else {
+      return res.status(403).send({ error: 'Unauthorized' });
+    }
   } catch (err) {
     next(err);
   }

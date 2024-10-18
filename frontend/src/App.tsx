@@ -8,6 +8,8 @@ import Login from './features/Users/Login.tsx';
 import Layout from './UI/Layout/Layout.tsx';
 import Cocktails from './features/Cocktails/Cocktails.tsx';
 import NewCocktail from './features/Cocktails/NewCocktail.tsx';
+import MyCocktails from './features/Cocktails/MyCocktails.tsx';
+import OneCocktail from './features/Cocktails/OneCocktail.tsx';
 
 const App = () => {
   const user = useAppSelector(selectUser);
@@ -15,7 +17,7 @@ const App = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<Cocktails />} />
-        <Route path="/cocktail/:id" element={<div />} />
+        <Route path="/cocktail/:id" element={<OneCocktail />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route
@@ -30,7 +32,7 @@ const App = () => {
           path="/my-cocktails"
           element={
             <ProtectedRoute isAllowed={user !== null}>
-              <div />
+              <MyCocktails />
             </ProtectedRoute>
           }
         />

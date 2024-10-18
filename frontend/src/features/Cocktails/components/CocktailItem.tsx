@@ -9,11 +9,34 @@ interface Props {
 }
 
 const CocktailItem: React.FC<Props> = ({ cocktail }) => {
-  const totalRate = cocktail.rate.reduce((acc, cur) => {
-    return acc + cur.rate;
-  }, 0);
+  const totalRate =
+    cocktail.rate.reduce((acc, cur) => {
+      return acc + cur.rate;
+    }, 0) / cocktail.rate.length;
+
+  let cardFooter = (
+    <Typography
+      variant="body2"
+      component="div"
+      sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+    >
+      Rating <Rating name="disabled" value={totalRate} disabled />
+    </Typography>
+  );
+  if (!cocktail.isPublished) {
+    cardFooter = (
+      <Typography
+        variant="body2"
+        component="div"
+        sx={{ color: 'rgb(255,0,0)', display: 'flex', fontSize: 16, justifyContent: 'center' }}
+      >
+        On Moderate
+      </Typography>
+    );
+  }
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, backgroundColor: cocktail.isPublished ? 'inherit' : 'rgba(205,141,141,0.2)' }}>
       <CardActionArea component={NavLink} to={`/cocktail/${cocktail._id}`}>
         <CardMedia
           component="img"
@@ -26,13 +49,7 @@ const CocktailItem: React.FC<Props> = ({ cocktail }) => {
           <Typography gutterBottom variant="h6" component="div" textAlign="center">
             {cocktail.title}
           </Typography>
-          <Typography
-            variant="body2"
-            component="div"
-            sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-          >
-            Rating <Rating name="disabled" value={totalRate} disabled />
-          </Typography>
+          {cardFooter}
         </CardContent>
       </CardActionArea>
     </Card>
