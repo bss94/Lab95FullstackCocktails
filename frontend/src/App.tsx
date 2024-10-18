@@ -6,13 +6,15 @@ import { useAppSelector } from './app/hooks.ts';
 import Register from './features/Users/Register.tsx';
 import Login from './features/Users/Login.tsx';
 import Layout from './UI/Layout/Layout.tsx';
+import Cocktails from './features/Cocktails/Cocktails.tsx';
+import NewCocktail from './features/Cocktails/NewCocktail.tsx';
 
 const App = () => {
   const user = useAppSelector(selectUser);
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<div />} />
+        <Route path="/" element={<Cocktails />} />
         <Route path="/cocktail/:id" element={<div />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
@@ -20,7 +22,7 @@ const App = () => {
           path="/new-cocktail"
           element={
             <ProtectedRoute isAllowed={user !== null}>
-              <div />
+              <NewCocktail />
             </ProtectedRoute>
           }
         />

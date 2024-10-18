@@ -29,12 +29,12 @@ usersRouter.post('/', imagesUpload.single('avatar'), async (req, res, next) => {
 });
 usersRouter.post('/sessions', async (req, res, next) => {
   try {
-    if (!req.body.username || !req.body.password) {
-      return res.status(400).send({ error: 'Username and password are required' });
+    if (!req.body.email || !req.body.password) {
+      return res.status(400).send({ error: 'Email and password are required' });
     }
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(400).send({ error: 'Username not found!' });
+      return res.status(400).send({ error: 'User not found!' });
     }
     const isMatch = await user.checkPassword(req.body.password);
     if (!isMatch) {

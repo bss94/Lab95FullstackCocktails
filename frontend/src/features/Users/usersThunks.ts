@@ -32,7 +32,7 @@ export const login = createAsyncThunk<User, LoginMutation, { rejectValue: Global
   'users/login',
   async (loginMutation, { rejectWithValue }) => {
     try {
-      const { data: user } = await axiosApi.post<User>('/users/session', loginMutation);
+      const { data: user } = await axiosApi.post<User>('/users/sessions', loginMutation);
       return user;
     } catch (e) {
       if (isAxiosError(e) && e.response && e.response.status === 400) {

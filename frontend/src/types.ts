@@ -35,3 +35,36 @@ export interface ValidationError {
 export interface GlobalError {
   error: string;
 }
+
+export interface Rate {
+  _id: string;
+  user: string;
+  rate: number;
+}
+
+export interface Ingredient {
+  _id: string;
+  ingredientName: string;
+  amount: string;
+}
+export interface Cocktail {
+  _id: string;
+  author: string;
+  title: string;
+  image: string;
+  recipe: string;
+  isPublished: boolean;
+  ingredients: Ingredient[];
+  rate: Rate[];
+}
+
+export interface IngredientMutation {
+  ingredientName: string;
+  amount: string;
+}
+export interface CocktailMutation {
+  title: string;
+  image: File | null;
+  recipe: string;
+  ingredients: IngredientMutation[];
+}

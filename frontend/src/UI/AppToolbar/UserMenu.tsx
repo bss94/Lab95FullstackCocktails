@@ -34,7 +34,6 @@ const UserMenu: React.FC<Props> = ({ user }) => {
     await dispatch(logout());
     navigate('/');
   };
-  console.log(user.avatar);
   return (
     <Grid>
       <Button onClick={handleClick} color={'inherit'}>
