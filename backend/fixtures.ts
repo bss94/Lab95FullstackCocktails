@@ -10,7 +10,7 @@ const run = async () => {
     await db.dropCollection('artists');
     await db.dropCollection('users');
   } catch (err) {
-    console.log('skipping drop');
+    console.log('skipping hgg drop');
   }
 
   const admin = new User({
